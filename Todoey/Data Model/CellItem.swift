@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CellItem {
+class CellItem: Encodable, Decodable {
     var title : String = ""
     var done : Bool = false
     
