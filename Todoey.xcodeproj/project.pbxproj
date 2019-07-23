@@ -12,7 +12,10 @@
 		043730512128198A001BC4BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0437304F2128198A001BC4BD /* Main.storyboard */; };
 		043730532128198B001BC4BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043730522128198B001BC4BD /* Assets.xcassets */; };
 		043730562128198B001BC4BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043730542128198B001BC4BD /* LaunchScreen.storyboard */; };
+		04633DAF22E710EF0027067F /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04633DAE22E710EF0027067F /* AlertManager.swift */; };
 		04882E9A21397BE700331250 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04882E9821397BE700331250 /* DataModel.xcdatamodeld */; };
+		04B00E0E22E6F70400A4051A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B00E0D22E6F70400A4051A /* CategoryViewController.swift */; };
+		04B00E1122E7041F00A4051A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B00E1022E7041F00A4051A /* DBManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +26,10 @@
 		043730522128198B001BC4BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		043730552128198B001BC4BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		043730572128198B001BC4BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04633DAE22E710EF0027067F /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertManager.swift; path = ../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Managers/AlertManager.swift; sourceTree = "<group>"; };
 		04882E9921397BE700331250 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		04B00E0D22E6F70400A4051A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = ../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Controllers/CategoryViewController.swift; sourceTree = "<group>"; };
+		04B00E1022E7041F00A4051A /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DBManager.swift; path = ../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Managers/DBManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,7 @@
 		0437304A2128198A001BC4BD /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
+				04B00E0F22E703FA00A4051A /* Managers */,
 				0437304B2128198A001BC4BD /* AppDelegate.swift */,
 				04933708212D45350032425A /* Data Model */,
 				0493370A212D45620032425A /* Views */,
@@ -78,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				0437304D2128198A001BC4BD /* TodoListViewController.swift */,
+				04B00E0D22E6F70400A4051A /* CategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -97,6 +105,15 @@
 				043730522128198B001BC4BD /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04B00E0F22E703FA00A4051A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				04B00E1022E7041F00A4051A /* DBManager.swift */,
+				04633DAE22E710EF0027067F /* AlertManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +148,7 @@
 				TargetAttributes = {
 					043730472128198A001BC4BD = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -170,6 +188,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B00E1122E7041F00A4051A /* DBManager.swift in Sources */,
+				04B00E0E22E6F70400A4051A /* CategoryViewController.swift in Sources */,
+				04633DAF22E710EF0027067F /* AlertManager.swift in Sources */,
 				0437304E2128198A001BC4BD /* TodoListViewController.swift in Sources */,
 				04882E9A21397BE700331250 /* DataModel.xcdatamodeld in Sources */,
 				0437304C2128198A001BC4BD /* AppDelegate.swift in Sources */,
@@ -325,7 +346,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lammax.learn.ios.study.udemy.angelayu.Todoey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -343,7 +364,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lammax.learn.ios.study.udemy.angelayu.Todoey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

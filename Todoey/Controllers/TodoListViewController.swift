@@ -11,18 +11,29 @@ import CoreData
 
 class TodoListViewController: UITableViewController {
     
-    var itemArray = [CellItem]()
-
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let dbManager: DBManager = DBManager.sharedInstance
+    let alertManager: AlertManager = AlertManager.sharedInstance
+    
+    var itemArray: [CellItem] = [CellItem]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    var categoryPredicate: NSPredicate?
+    
+    var selectedCategory: ItemCategory? {
+        didSet {
+            if let name = selectedCategory?.categoryName  {
+                categoryPredicate = NSPredicate(format: "parentCategory.categoryName MATCHES %@", name)
+                self.loadItems()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        loadItems()
-        
+        //loadItems(with: CellItem.fetchRequest())
     }
     
     //MARK - TableView Datasource Methods
@@ -50,65 +61,57 @@ class TodoListViewController: UITableViewController {
         tableView.cellForRow(at: indexPath)?.accessoryType = currentItem.done ? .checkmark : .none
         tableView.deselectRow(at: indexPath, animated: true)
         
-//        self.context.delete(currentItem)
-//        self.itemArray.remove(at: indexPath.row)
-        
-        self.saveItems()
+        self.dbManager.delete(currentItem)
+        self.itemArray.remove(at: indexPath.row)
+
     }
     
     //MARK - Add New Items
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        
-        var textField = UITextField()
-        
-        let alert = UIAlertController(title: "Add new Todoye Item", message: nil, preferredStyle: .alert)
-        
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "create new item"
-            textField = alertTextField
+        let alert = self.alertManager.askAlert(for: "Item") { (title) in
+            let newItem = self.dbManager.createCellItem(title: title, category: self.selectedCategory)
+            self.itemArray.append(newItem)
         }
-        
-        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            //what will happen once user clicks Add item button
-            if let text = textField.text, text.count > 0 {
-                
-                let newItem = CellItem(context: self.context)
-                newItem.title = textField.text!
-                newItem.done = false
-                self.itemArray.append(newItem)
-                self.tableView.reloadData()
-                self.saveItems()
-            }
-        }
-        
-        alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
     
     //MARK - Model Manipulation Methods
-    func saveItems() {
-        
-        do {
-            try context.save()
-            self.tableView.reloadData()
-        } catch {
-            print("Error saving context \(error.localizedDescription)")
+    func loadItems(with request: NSFetchRequest<NSFetchRequestResult> = CellItem.fetchRequest(), predicate: NSPredicate? = nil) {
+        let compaundPredicate: NSCompoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, self.categoryPredicate].reduce(into: [], { (acc, mbPredicate) in
+            if let prdc = mbPredicate { acc.append(prdc) }
+        }))
+        request.predicate = compaundPredicate
+        dbManager.loadItems(with: request) { (maybeItems) in
+            if let items = maybeItems {
+                self.itemArray = items as! [CellItem]
+            }
         }
-        
     }
     
-    func loadItems() {
-
-        let request : NSFetchRequest<CellItem> = CellItem.fetchRequest()
-        do {
-            self.itemArray = try self.context.fetch(request)
-            self.tableView.reloadData()
-        } catch {
-            print("Error loading context \(error.localizedDescription)")
-        }
-        
-    }
-    
-
 }
 
+extension TodoListViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //https://academy.realm.io/posts/nspredicate-cheatsheet/
+        let request: NSFetchRequest<NSFetchRequestResult> = CellItem.fetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text ?? "")
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        self.loadItems(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            self.loadItems()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            let request: NSFetchRequest<NSFetchRequestResult> = CellItem.fetchRequest()
+            let containsPredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text ?? "")
+            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+            self.loadItems(with: request, predicate: containsPredicate)
+        }
+    }
+    
+}
