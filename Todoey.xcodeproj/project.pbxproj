@@ -16,6 +16,7 @@
 		04882E9A21397BE700331250 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04882E9821397BE700331250 /* DataModel.xcdatamodeld */; };
 		04B00E0E22E6F70400A4051A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B00E0D22E6F70400A4051A /* CategoryViewController.swift */; };
 		04B00E1122E7041F00A4051A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B00E1022E7041F00A4051A /* DBManager.swift */; };
+		04D27E6E22E9D89900A8E174 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D27E6D22E9D89900A8E174 /* SwipeTableViewController.swift */; };
 		04DBA98522E740F4002188D5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBA98422E740F4002188D5 /* Item.swift */; };
 		04DBA98722E77DA9002188D5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBA98622E77DA9002188D5 /* Category.swift */; };
 		04DBA98922E77FAD002188D5 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DBA98822E77FAD002188D5 /* RealmManager.swift */; };
@@ -34,6 +35,7 @@
 		04882E9921397BE700331250 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		04B00E0D22E6F70400A4051A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = ../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Controllers/CategoryViewController.swift; sourceTree = "<group>"; };
 		04B00E1022E7041F00A4051A /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DBManager.swift; path = ../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Managers/DBManager.swift; sourceTree = "<group>"; };
+		04D27E6D22E9D89900A8E174 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeTableViewController.swift; path = ../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Controllers/SwipeTableViewController.swift; sourceTree = "<group>"; };
 		04DBA98422E740F4002188D5 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Item.swift; path = "../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Data Model/Item.swift"; sourceTree = "<group>"; };
 		04DBA98622E77DA9002188D5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Category.swift; path = "../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Data Model/Category.swift"; sourceTree = "<group>"; };
 		04DBA98822E77FAD002188D5 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmManager.swift; path = ../../../../../../../../../System/Volumes/Data/Users/mac/Documents/Study/Udemy/iOS11_AngelaYu/Todoey/Todoey/Managers/RealmManager.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				0437304D2128198A001BC4BD /* TodoListViewController.swift */,
 				04B00E0D22E6F70400A4051A /* CategoryViewController.swift */,
+				04D27E6D22E9D89900A8E174 /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				04B00E1122E7041F00A4051A /* DBManager.swift in Sources */,
 				04B00E0E22E6F70400A4051A /* CategoryViewController.swift in Sources */,
 				04633DAF22E710EF0027067F /* AlertManager.swift in Sources */,
+				04D27E6E22E9D89900A8E174 /* SwipeTableViewController.swift in Sources */,
 				0437304E2128198A001BC4BD /* TodoListViewController.swift in Sources */,
 				04DBA98922E77FAD002188D5 /* RealmManager.swift in Sources */,
 				04882E9A21397BE700331250 /* DataModel.xcdatamodeld in Sources */,

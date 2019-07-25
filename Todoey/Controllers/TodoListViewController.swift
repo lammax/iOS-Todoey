@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: SwipeTableViewController {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     //let dbManager: DBManager = DBManager.sharedInstance
@@ -48,6 +48,7 @@ class TodoListViewController: UITableViewController {
         super.viewDidLoad()
         self.loadItems()
         self.setupObservers()
+        self.setupUI()
     }
     
     private func setupObservers() {
@@ -55,7 +56,16 @@ class TodoListViewController: UITableViewController {
             self?.tableView.reloadData()
         }
     }
-
+    
+    private func setupUI() {
+        super.deleteAction = { index in
+            self.realmManager.delete(object: self.itemArray?[index])
+        }
+    }
+    
+    override func deleteObject(at indexPath: IndexPath) {
+        self.realmManager.delete(object: self.itemArray?[indexPath.row])
+    }
     
     //MARK - TableView Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,13 +73,13 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "TodoItemCell")
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         let item = itemArray?[indexPath.row]
 
         cell.textLabel?.text = item?.title ?? "No Items Added"
         cell.accessoryType = (item?.done ?? false) ? .checkmark : .none
-
+        
         return cell
     }
     
